@@ -12,6 +12,7 @@ export default function ItemBox(props) {
   const [ currentItems, setCurrent] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchKey, setSearchKey] = useState("");
+  const [paintKey, setPaintKey] = useState([]);
   const [ filteredItems, setFilteredCurrent] = useState([]);
   const [sortkey, setSortKey] = useState("");
   
@@ -41,18 +42,27 @@ export default function ItemBox(props) {
     if(searchKey){
       const firstPageIndex = (currentPage - 1) * PageSize;
       const lastPageIndex = firstPageIndex + PageSize;
+      // setSearchItem(filteredItems);
       let tmpItems=[];
       if(items?.length > 0){
-        tmpItems = items.filter((item) => item.title.toLowerCase().indexOf(searchKey.toLowerCase())>-1)
+        if(paintKey =="all"){
+          tmpItems = items.filter((item) => item.title.toLowerCase().indexOf(searchKey.toLowerCase())>-1)
+        }
+        else if(paintKey !="all" && paintKey !="none"){
+          tmpItems = items.filter((item) => item.title.toLowerCase().indexOf(searchKey.toLowerCase())>-1 && item.color?.name == paintKey)
+        }
       }
-      setFilteredCurrent(tmpItems);
+      setFilteredCurrent([...tmpItems]);
     }
     else{
       let tmp=[];
       if (items){
-        items.map((item, index) => {
-          tmp.push(item);
-        })
+        if(paintKey =="all"){
+          tmp = items
+        }
+        else if(paintKey !="all" && paintKey !="none"){
+          tmp = items.filter((item) => item.color?.name == paintKey)
+        }
       }
       setFilteredCurrent(tmp);
     }
@@ -84,6 +94,7 @@ export default function ItemBox(props) {
       let paintTemp = [];
       paintTemp = tmp.filter((item)=>item.color?.name == "");
       setFilteredCurrent(paintTemp);
+      setPaintKey("none");
     }
     else if(event.target.value == "Any"){
       let tmp=[];
@@ -93,6 +104,7 @@ export default function ItemBox(props) {
         })
       }
       setFilteredCurrent(tmp);
+      setPaintKey("all");
     }
     else{
       let tmp=[];
@@ -106,6 +118,7 @@ export default function ItemBox(props) {
         item.color?.name==event.target.value
       );
       setFilteredCurrent(paintTemp);
+      setPaintKey(event.target.value);
     }
   }
   
