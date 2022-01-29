@@ -1,0 +1,93 @@
+// Breadcrumb
+
+// # Contents
+// 1. Nav
+// 2. Item
+// 3. Responsive
+
+// # Variables
+
+@include set-default(
+	(
+
+		breadcrumb: (
+			color: #8e8e8e,
+			letter-spacing: -.01em,
+			border-top: false,
+			border-bottom: 1px solid #dfdfdf,
+			margin-bottom: false,
+			padding: 1rem,
+
+			font: (
+				size: 12px,
+				weight: false,
+				family: false,
+			),
+
+			divider: (
+				size: 10px,
+				space: 0.7rem,
+				weight: false,
+				content: "\e606"
+			)
+		)
+	)
+);
+
+// 1. Nav
+
+.breadcrumb-nav {
+	@include css( color, breadcrumb, color );
+	@include css( margin-bottom, breadcrumb, margin-bottom);
+}
+
+.breadcrumb {
+	margin-bottom: 0;
+	@if ( get( breadcrumb, padding ) ) {
+		padding: get( breadcrumb, padding ) 0;
+	}
+	border-radius: 0;
+	background-color: transparent;
+}
+
+// 2. Item
+
+.breadcrumb-item {
+	@include css( font-weight, breadcrumb, font, weight );
+	@include css( font-size, breadcrumb, font, size);
+	@include css( font-family, breadcrumb, font, family);
+	@include css( letter-spacing, breadcrumb, letter-spacing );
+	line-height: 24px;
+	text-transform: uppercase;
+
+	& + & {
+		@include css( padding-left, breadcrumb, divider, space);
+
+		&:before {
+			color: inherit;
+			padding-right: .7rem;
+			@include css( content, breadcrumb, divider, content);
+			@include css( font-size, breadcrumb, divider, size);
+			@include css( font-weight, breadcrumb, divider, weight);
+			font-family: "simple-line-icons";
+			vertical-align: middle;
+			margin-top: -2px;
+		}
+	}
+
+	a:not(:first-child) {
+		margin-left: 5px;
+	}
+
+	a,
+	&.active {
+		color: inherit;
+	}
+}
+
+@media ( max-width: 575px ) {
+	.breadcrumb-item + .breadcrumb-item { padding-left: 5px; } 
+	.breadcrumb-item + .breadcrumb-item:before {
+		padding-right: 5px;
+	}
+}

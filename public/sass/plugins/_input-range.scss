@@ -1,0 +1,30 @@
+.price-slider-wrapper .input-range {
+    height: .3rem;
+
+    .input-range__slider {
+        height: 22px;
+        width: 22px;
+        right: -.55rem;
+        left: auto;
+        top: -6px;
+        background: #4f4f4f;
+        border-color: #4f4f4f;
+        border-radius: 3px;
+    }
+
+    .input-range__track--active {
+        background: $secondary-color;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.38) inset;
+    }
+
+    .input-range__label--value,
+    .input-range__label-container {
+        color: transparent;
+    }
+}
+
+.input-range__slider:active {
+    transform: scale(1.1);
+}
+
+.input-range__track { height: 10px; border-radius: 0; background: #1F1F1F; }

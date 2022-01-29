@@ -1,0 +1,68 @@
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: .85rem 1.5rem;
+	font-weight: 400;
+	font-size: 1.4rem;
+	line-height: 1.5;
+	letter-spacing: -.01em;
+	min-width: 170px;
+	border-radius: 0;
+	white-space: normal;
+	transition: all 0.3s;
+
+	span {
+		line-height: 1;
+	}
+
+	i {
+		&:first-child {
+			margin-right: 1rem;
+		}
+
+		&:last-child {
+			margin-left: 1rem;
+		}
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	&:focus,
+	&:active {
+		outline: none !important;
+	}
+
+	&:active:focus {
+		box-shadow: none !important;
+	}
+
+	&.btn-minwidth-sm {
+		min-width: 112px;
+	}
+
+	&.btn-minwidth {
+		min-width: 170px;
+	}
+
+	&.btn-minwidth-lg {
+		min-width: 218px;
+	}
+}
+
+.btn.btn-login {
+    color: #333;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    border: 0.1rem solid #ccc;
+    min-width: 0;
+}

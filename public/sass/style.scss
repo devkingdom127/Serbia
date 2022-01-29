@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+@use 'sass:math';
+
+// Mixins
+@import 'mixins/core';
+@import 'mixins/clearfix';
+@import 'mixins/breakpoints';
+
+// Config
+@import 'config/variables';
+
+// Component
+@import 'components/button';
+@import 'components/form';
+@import 'components/modal';
+
+// Plugins CSS
+@import 'plugins/input-range';
+
+// Pages CSS
+@import 'pages/category';
+@import 'pages/cart';
+@import 'pages/breadcrumb';
